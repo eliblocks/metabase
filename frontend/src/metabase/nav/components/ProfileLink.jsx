@@ -39,20 +39,18 @@ export default class ProfileLink extends Component {
     const admin = this.props.user.is_superuser;
     const adminContext = this.props.context === "admin";
     return [
-      {
-        title: t`Account settings`,
-        icon: null,
-        link: Urls.accountSettings(),
-        event: `Navbar;Profile Dropdown;Edit Profile`,
-      },
       ...(admin && [
         {
-          title: adminContext ? t`Exit admin` : t`Admin`,
+          title: t`Admin`,
           icon: null,
-          link: adminContext ? "/" : "/admin",
-          event: `Navbar;Profile Dropdown;${
-            adminContext ? "Exit Admin" : "Enter Admin"
-          }`,
+          link: '/admin',
+          event: `Navbar;Profile Dropdown;`
+        },
+        {
+          title: t`Data model`,
+          icon: null,
+          link: "/datamodel",
+          event: `Navbar;Profile Dropdown;Data Model`
         },
       ]),
       {
@@ -69,16 +67,10 @@ export default class ProfileLink extends Component {
         event: `Navbar;Profile Dropdown;About ${tag}`,
       },
       {
-        title: t`About Metabase`,
-        icon: null,
-        action: () => this.openModal("about"),
-        event: `Navbar;Profile Dropdown;About ${tag}`,
-      },
-      {
         title: t`Sign out`,
         icon: null,
-        link: "auth/logout",
-        event: `Navbar;Profile Dropdown;Logout`,
+        link: '/sign_out',
+        event: `Logout`,
       },
     ];
   };

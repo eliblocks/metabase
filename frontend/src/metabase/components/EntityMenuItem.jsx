@@ -86,6 +86,26 @@ const EntityMenuItem = ({
     </Item>
   );
 
+  if (link  && link === '/sign_out') {
+    return (
+      <form
+        id="dataview-logout-form"
+        method="post"
+        action="http://localhost:3001/users/sign_out"
+        onClick={() => document.querySelector("#dataview-logout-form").submit()}
+       >
+        <input type="hidden" name="_method" value="delete" />
+        { content }
+      </form>
+    );
+  }
+
+  if(link && link === '/admin') {
+    return (
+      <a href="http://localhost:3001/admin">{content}</a>
+    );
+  }
+
   if (link) {
     return (
       <LinkMenuItem
