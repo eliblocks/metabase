@@ -27,6 +27,8 @@ const BUILD_PATH = __dirname + "/resources/frontend_client";
 // default NODE_ENV to development
 const NODE_ENV = process.env["NODE_ENV"] || "development";
 
+const DATAVIEW_BASE_URL = process.env["DATAVIEW_BASE_URL"] || "http://localhost:3001";
+
 // Babel:
 const BABEL_CONFIG = {
   cacheDirectory: process.env.BABEL_DISABLE_CACHE ? null : ".babel_cache",
@@ -168,6 +170,7 @@ const config = (module.exports = {
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify(NODE_ENV),
+        DATAVIEW_BASE_URL: JSON.stringify(DATAVIEW_BASE_URL)
       },
     }),
     new BannerWebpackPlugin({
