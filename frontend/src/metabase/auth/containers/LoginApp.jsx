@@ -17,7 +17,7 @@ const mapStateToProps = (state, props) => ({
 @connect(mapStateToProps)
 export default class LoginApp extends Component {
   componentWillMount() {
-    window.location.href = "http://localhost:3001/admin"
+    window.location.href = `${process.env.DATAVIEW_BASE_URL}/admin`
   }
   renderPanel(provider) {
     return <provider.Panel {...this.props} />;
