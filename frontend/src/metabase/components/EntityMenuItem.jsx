@@ -100,6 +100,12 @@ const EntityMenuItem = ({
     );
   }
 
+  if(link && link === '/user/edit_current') {
+    return (
+      <a href={`${process.env.DATAVIEW_BASE_URL}/users/edit`}>{content}</a>
+    );
+  }
+
   if(link && link === '/admin') {
     return (
       <a href={`${process.env.DATAVIEW_BASE_URL}/admin`}>{content}</a>

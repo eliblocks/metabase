@@ -520,12 +520,6 @@ export default class Activity extends Component {
     const { activity, user } = this.props;
     const { error } = this.state;
 
-    // let apiUrl = ""
-    // if(process.env.NODE_ENV === "development") {
-    //   let apiUrl = "localhost"
-    // }
-    // console.log(apiUrl)
-
     return (
       <LoadingAndErrorWrapper loading={!activity} error={error}>
         {() => (

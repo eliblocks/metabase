@@ -27,7 +27,7 @@ const BUILD_PATH = __dirname + "/resources/frontend_client";
 // default NODE_ENV to development
 const NODE_ENV = process.env["NODE_ENV"] || "development";
 
-const DATAVIEW_BASE_URL = process.env["DATAVIEW_BASE_URL"] || "http://localhost:3001";
+const DATAVIEW_BASE_URL = (NODE_ENV === "production" ? "https://www.getdataview.com" : "http://localhost:3001");
 
 // Babel:
 const BABEL_CONFIG = {
