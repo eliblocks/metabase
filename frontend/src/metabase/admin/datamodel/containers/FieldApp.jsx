@@ -286,7 +286,7 @@ const FieldGeneralPane = ({
     <Section>
       <SectionHeader
         title={t`Visibility`}
-        description={t`Where this field will appear throughout Metabase`}
+        description="Where this field will appear throughout DataView"
       />
       <div style={{ maxWidth: 400 }}>
         <FieldVisibilityPicker

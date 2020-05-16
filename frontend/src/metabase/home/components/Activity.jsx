@@ -84,7 +84,7 @@ export default class Activity extends Component {
     } else if (user) {
       return user.first_name;
     } else {
-      return t`Metabase`;
+      return "DataView";
     }
   }
 
@@ -251,8 +251,8 @@ export default class Activity extends Component {
         }
         break;
       case "install":
-        description.userName = t`Hello World!`;
-        description.summary = t`Metabase is up and running.`;
+        description.userName = "Welcome to DataView!";
+        description.summary = "Account created successfully";
         break;
       case "metric-create":
         if (item.model_exists) {

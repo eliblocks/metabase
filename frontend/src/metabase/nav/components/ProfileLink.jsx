@@ -85,7 +85,7 @@ export default class ProfileLink extends Component {
     const { modalOpen } = this.state;
     const { tag, date, ...versionExtra } = MetabaseSettings.get("version");
     // don't show trademark if application name is whitelabeled
-    const showTrademark = t`Metabase` === "Metabase";
+    const showTrademark = false
     return (
       <Box>
         <EntityMenu
