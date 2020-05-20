@@ -105,17 +105,13 @@ class Settings {
   }
 
   docsUrl(page = "", anchor = "") {
-    let { tag } = this.get("version", {});
-    if (!tag) {
-      tag = "latest";
-    }
     if (page) {
       page = `/${page}.html`;
     }
     if (anchor) {
       anchor = `#${anchor}`;
     }
-    return `https://metabase.com/docs/${tag}${page}${anchor}`;
+    return `https://docs.getdataview.com${page}${anchor}`;
   }
 
   newVersionAvailable() {

@@ -106,11 +106,19 @@ const EntityMenuItem = ({
     );
   }
 
-  if(link && link === '/admin') {
+  if(link && link === '/users') {
     return (
-      <a href={`${process.env.DATAVIEW_BASE_URL}/admin`}>{content}</a>
+      <a href={`${process.env.DATAVIEW_BASE_URL}/users`}>{content}</a>
     );
   }
+
+  if(link && link === '/databases') {
+    return (
+      <a href={`${process.env.DATAVIEW_BASE_URL}/databases`}>{content}</a>
+    );
+  }
+
+
 
   if (link) {
     return (

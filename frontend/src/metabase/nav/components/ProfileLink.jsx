@@ -47,9 +47,15 @@ export default class ProfileLink extends Component {
       },
       ...(admin && [
         {
-          title: t`Admin`,
+          title: t`Users`,
           icon: null,
-          link: '/admin',
+          link: '/users',
+          event: `Navbar;Profile Dropdown;`
+        },
+        {
+          title: t`Databases`,
+          icon: null,
+          link: '/databases',
           event: `Navbar;Profile Dropdown;`
         },
         {
