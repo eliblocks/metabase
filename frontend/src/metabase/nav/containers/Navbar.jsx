@@ -263,12 +263,6 @@ export default class Navbar extends Component {
                 key={`admin-nav-${name}`}
               />
             ))}
-            <AdminNavItem
-              name={t`Troubleshooting`}
-              path="/admin/troubleshooting"
-              currentPath={this.props.path}
-              key="admin-nav-troubleshooting"
-            />
           </ul>
 
           <ProfileLink {...this.props} />

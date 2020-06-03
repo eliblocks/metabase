@@ -51,6 +51,16 @@ const Users = createEntity({
           password: MetabaseUtils.generatePassword(),
         };
       }
+      const url = `${process.env.DATAVIEW_BASE_URL}/users/add`
+      fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({user: user})
+      });
       const result = await thunkCreator(user)(dispatch, getState);
 
       dispatch(loadMemberships());

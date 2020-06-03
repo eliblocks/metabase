@@ -79,7 +79,10 @@
                                  ;; MailChimp. So people can sign up for the Metabase mailing list in the sign up process
                                  "metabase.us10.list-manage.com"
                                  (when config/is-dev?
-                                   "localhost:8080 ws://localhost:8080")]
+                                   "localhost:8080 ws://localhost:8080")
+                                 (when config/is-dev?
+                                   "localhost:3001")
+                                 "https://www.getdataview.com"]
                   :manifest-src ["'self'"]}]
       (format "%s %s; " (name k) (str/join " " vs))))})
 

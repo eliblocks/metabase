@@ -22,152 +22,152 @@ import { UtilApi } from "metabase/services";
 import { PLUGIN_ADMIN_SETTINGS_UPDATES } from "metabase/plugins";
 
 // This allows plugins to update the settings sections
-function updateSectionsWithPlugins(sections) {
-  return PLUGIN_ADMIN_SETTINGS_UPDATES.reduce(
-    (sections, update) => update(sections),
-    sections,
-  );
-}
+// function updateSectionsWithPlugins(sections) {
+//   return PLUGIN_ADMIN_SETTINGS_UPDATES.reduce(
+//     (sections, update) => update(sections),
+//     sections,
+//   );
+// }
 
-const SECTIONS = updateSectionsWithPlugins({
+const SECTIONS = {
   setup: {
     name: t`Setup`,
     settings: [],
     component: SettingsSetupList,
   },
-  general: {
-    name: t`General`,
-    settings: [
-      {
-        key: "site-name",
-        display_name: t`Site Name`,
-        type: "string",
-      },
-      {
-        key: "site-url",
-        display_name: t`Site URL`,
-        type: "string",
-      },
-      {
-        key: "admin-email",
-        display_name: t`Email Address for Help Requests`,
-        type: "string",
-      },
-      {
-        key: "report-timezone",
-        display_name: t`Report Timezone`,
-        type: "select",
-        options: [
-          { name: t`Database Default`, value: "" },
-          ...MetabaseSettings.get("available-timezones"),
-        ],
-        note: t`Not all databases support timezones, in which case this setting won't take effect.`,
-        allowValueCollection: true,
-      },
-      {
-        key: "site-locale",
-        display_name: t`Language`,
-        type: "select",
-        options: (MetabaseSettings.get("available-locales") || []).map(
-          ([value, name]) => ({ name, value }),
-        ),
-        defaultValue: "en",
-        getHidden: () => MetabaseSettings.get("available-locales").length < 2,
-      },
-      {
-        key: "anon-tracking-enabled",
-        display_name: t`Anonymous Tracking`,
-        type: "boolean",
-      },
-      {
-        key: "humanization-strategy",
-        display_name: t`Friendly Table and Field Names`,
-        type: "select",
-        options: [
-          { value: "advanced", name: t`Enabled` },
-          {
-            value: "simple",
-            name: t`Only replace underscores and dashes with spaces`,
-          },
-          { value: "none", name: t`Disabled` },
-        ],
-        defaultValue: "advanced",
-      },
-      {
-        key: "enable-nested-queries",
-        display_name: t`Enable Nested Queries`,
-        type: "boolean",
-      },
-      {
-        key: "enable-xrays",
-        display_name: t`Enable X-ray features`,
-        type: "boolean",
-      },
-    ],
-  },
-  updates: {
-    name: t`Updates`,
-    component: SettingsUpdatesForm,
-    settings: [
-      {
-        key: "check-for-updates",
-        display_name: t`Check for updates`,
-        type: "boolean",
-      },
-    ],
-  },
-  email: {
-    name: t`Email`,
-    component: SettingsEmailForm,
-    settings: [
-      {
-        key: "email-smtp-host",
-        display_name: t`SMTP Host`,
-        placeholder: "smtp.yourservice.com",
-        type: "string",
-        required: true,
-        autoFocus: true,
-      },
-      {
-        key: "email-smtp-port",
-        display_name: t`SMTP Port`,
-        placeholder: "587",
-        type: "number",
-        required: true,
-        validations: [["integer", t`That's not a valid port number`]],
-      },
-      {
-        key: "email-smtp-security",
-        display_name: t`SMTP Security`,
-        description: null,
-        type: "radio",
-        options: { none: "None", ssl: "SSL", tls: "TLS", starttls: "STARTTLS" },
-        defaultValue: "none",
-      },
-      {
-        key: "email-smtp-username",
-        display_name: t`SMTP Username`,
-        description: null,
-        placeholder: "youlooknicetoday",
-        type: "string",
-      },
-      {
-        key: "email-smtp-password",
-        display_name: t`SMTP Password`,
-        description: null,
-        placeholder: "Shhh...",
-        type: "password",
-      },
-      {
-        key: "email-from-address",
-        display_name: t`From Address`,
-        placeholder: "metabase@yourcompany.com",
-        type: "string",
-        required: true,
-        validations: [["email", t`That's not a valid email address`]],
-      },
-    ],
-  },
+  // general: {
+  //   name: t`General`,
+  //   settings: [
+  //     {
+  //       key: "site-name",
+  //       display_name: t`Site Name`,
+  //       type: "string",
+  //     },
+  //     {
+  //       key: "site-url",
+  //       display_name: t`Site URL`,
+  //       type: "string",
+  //     },
+  //     {
+  //       key: "admin-email",
+  //       display_name: t`Email Address for Help Requests`,
+  //       type: "string",
+  //     },
+  //     {
+  //       key: "report-timezone",
+  //       display_name: t`Report Timezone`,
+  //       type: "select",
+  //       options: [
+  //         { name: t`Database Default`, value: "" },
+  //         ...MetabaseSettings.get("available-timezones"),
+  //       ],
+  //       note: t`Not all databases support timezones, in which case this setting won't take effect.`,
+  //       allowValueCollection: true,
+  //     },
+  //     {
+  //       key: "site-locale",
+  //       display_name: t`Language`,
+  //       type: "select",
+  //       options: (MetabaseSettings.get("available-locales") || []).map(
+  //         ([value, name]) => ({ name, value }),
+  //       ),
+  //       defaultValue: "en",
+  //       getHidden: () => MetabaseSettings.get("available-locales").length < 2,
+  //     },
+  //     {
+  //       key: "anon-tracking-enabled",
+  //       display_name: t`Anonymous Tracking`,
+  //       type: "boolean",
+  //     },
+  //     {
+  //       key: "humanization-strategy",
+  //       display_name: t`Friendly Table and Field Names`,
+  //       type: "select",
+  //       options: [
+  //         { value: "advanced", name: t`Enabled` },
+  //         {
+  //           value: "simple",
+  //           name: t`Only replace underscores and dashes with spaces`,
+  //         },
+  //         { value: "none", name: t`Disabled` },
+  //       ],
+  //       defaultValue: "advanced",
+  //     },
+  //     {
+  //       key: "enable-nested-queries",
+  //       display_name: t`Enable Nested Queries`,
+  //       type: "boolean",
+  //     },
+  //     {
+  //       key: "enable-xrays",
+  //       display_name: t`Enable X-ray features`,
+  //       type: "boolean",
+  //     },
+  //   ],
+  // },
+  // updates: {
+  //   name: t`Updates`,
+  //   component: SettingsUpdatesForm,
+  //   settings: [
+  //     {
+  //       key: "check-for-updates",
+  //       display_name: t`Check for updates`,
+  //       type: "boolean",
+  //     },
+  //   ],
+  // },
+  // email: {
+  //   name: t`Email`,
+  //   component: SettingsEmailForm,
+  //   settings: [
+  //     {
+  //       key: "email-smtp-host",
+  //       display_name: t`SMTP Host`,
+  //       placeholder: "smtp.yourservice.com",
+  //       type: "string",
+  //       required: true,
+  //       autoFocus: true,
+  //     },
+  //     {
+  //       key: "email-smtp-port",
+  //       display_name: t`SMTP Port`,
+  //       placeholder: "587",
+  //       type: "number",
+  //       required: true,
+  //       validations: [["integer", t`That's not a valid port number`]],
+  //     },
+  //     {
+  //       key: "email-smtp-security",
+  //       display_name: t`SMTP Security`,
+  //       description: null,
+  //       type: "radio",
+  //       options: { none: "None", ssl: "SSL", tls: "TLS", starttls: "STARTTLS" },
+  //       defaultValue: "none",
+  //     },
+  //     {
+  //       key: "email-smtp-username",
+  //       display_name: t`SMTP Username`,
+  //       description: null,
+  //       placeholder: "youlooknicetoday",
+  //       type: "string",
+  //     },
+  //     {
+  //       key: "email-smtp-password",
+  //       display_name: t`SMTP Password`,
+  //       description: null,
+  //       placeholder: "Shhh...",
+  //       type: "password",
+  //     },
+  //     {
+  //       key: "email-from-address",
+  //       display_name: t`From Address`,
+  //       placeholder: "metabase@yourcompany.com",
+  //       type: "string",
+  //       required: true,
+  //       validations: [["email", t`That's not a valid email address`]],
+  //     },
+  //   ],
+  // },
   slack: {
     name: "Slack",
     settings: [
@@ -191,28 +191,28 @@ const SECTIONS = updateSectionsWithPlugins({
       },
     ],
   },
-  authentication: {
-    name: t`Authentication`,
-    settings: [], // added by plugins
-  },
-  maps: {
-    name: t`Maps`,
-    settings: [
-      {
-        key: "map-tile-server-url",
-        display_name: t`Map tile server URL`,
-        note: t`Metabase uses OpenStreetMaps by default.`,
-        type: "string",
-      },
-      {
-        key: "custom-geojson",
-        display_name: t`Custom Maps`,
-        description: t`Add your own GeoJSON files to enable different region map visualizations`,
-        widget: CustomGeoJSONWidget,
-        noHeader: true,
-      },
-    ],
-  },
+  // authentication: {
+  //   name: t`Authentication`,
+  //   settings: [], // added by plugins
+  // },
+  // maps: {
+  //   name: t`Maps`,
+  //   settings: [
+  //     {
+  //       key: "map-tile-server-url",
+  //       display_name: t`Map tile server URL`,
+  //       note: t`Metabase uses OpenStreetMaps by default.`,
+  //       type: "string",
+  //     },
+  //     {
+  //       key: "custom-geojson",
+  //       display_name: t`Custom Maps`,
+  //       description: t`Add your own GeoJSON files to enable different region map visualizations`,
+  //       widget: CustomGeoJSONWidget,
+  //       noHeader: true,
+  //     },
+  //   ],
+  // },
   formatting: {
     name: t`Formatting`,
     settings: [
@@ -246,93 +246,93 @@ const SECTIONS = updateSectionsWithPlugins({
       },
     ],
   },
-  embedding_in_other_applications: {
-    name: t`Embedding in other Applications`,
-    settings: [
-      {
-        key: "enable-embedding",
-        description: null,
-        widget: EmbeddingLegalese,
-        getHidden: settings => settings["enable-embedding"],
-        onChanged: async (
-          oldValue,
-          newValue,
-          settingsValues,
-          onChangeSetting,
-        ) => {
-          // Generate a secret key if none already exists
-          if (
-            !oldValue &&
-            newValue &&
-            !settingsValues["embedding-secret-key"]
-          ) {
-            const result = await UtilApi.random_token();
-            await onChangeSetting("embedding-secret-key", result.token);
-          }
-        },
-      },
-      {
-        key: "enable-embedding",
-        display_name: t`Enable Embedding Metabase in other Applications`,
-        type: "boolean",
-        getHidden: settings => !settings["enable-embedding"],
-      },
-      {
-        widget: EmbeddingLevel,
-        getHidden: settings => !settings["enable-embedding"],
-      },
-      {
-        key: "embedding-secret-key",
-        display_name: t`Embedding secret key`,
-        widget: SecretKeyWidget,
-        getHidden: settings => !settings["enable-embedding"],
-      },
-      {
-        key: "-embedded-dashboards",
-        display_name: t`Embedded Dashboards`,
-        widget: EmbeddedDashboardListing,
-        getHidden: settings => !settings["enable-embedding"],
-      },
-      {
-        key: "-embedded-questions",
-        display_name: t`Embedded Questions`,
-        widget: EmbeddedQuestionListing,
-        getHidden: settings => !settings["enable-embedding"],
-      },
-    ],
-  },
-  caching: {
-    name: t`Caching`,
-    settings: [
-      {
-        key: "enable-query-caching",
-        display_name: t`Enable Caching`,
-        type: "boolean",
-      },
-      {
-        key: "query-caching-min-ttl",
-        display_name: t`Minimum Query Duration`,
-        type: "number",
-        getHidden: settings => !settings["enable-query-caching"],
-        allowValueCollection: true,
-      },
-      {
-        key: "query-caching-ttl-ratio",
-        display_name: t`Cache Time-To-Live (TTL) multiplier`,
-        type: "number",
-        getHidden: settings => !settings["enable-query-caching"],
-        allowValueCollection: true,
-      },
-      {
-        key: "query-caching-max-kb",
-        display_name: t`Max Cache Entry Size`,
-        type: "number",
-        getHidden: settings => !settings["enable-query-caching"],
-        allowValueCollection: true,
-      },
-    ],
-  },
-});
+  // embedding_in_other_applications: {
+  //   name: t`Embedding in other Applications`,
+  //   settings: [
+  //     {
+  //       key: "enable-embedding",
+  //       description: null,
+  //       widget: EmbeddingLegalese,
+  //       getHidden: settings => settings["enable-embedding"],
+  //       onChanged: async (
+  //         oldValue,
+  //         newValue,
+  //         settingsValues,
+  //         onChangeSetting,
+  //       ) => {
+  //         // Generate a secret key if none already exists
+  //         if (
+  //           !oldValue &&
+  //           newValue &&
+  //           !settingsValues["embedding-secret-key"]
+  //         ) {
+  //           const result = await UtilApi.random_token();
+  //           await onChangeSetting("embedding-secret-key", result.token);
+  //         }
+  //       },
+  //     },
+  //     {
+  //       key: "enable-embedding",
+  //       display_name: t`Enable Embedding Metabase in other Applications`,
+  //       type: "boolean",
+  //       getHidden: settings => !settings["enable-embedding"],
+  //     },
+  //     {
+  //       widget: EmbeddingLevel,
+  //       getHidden: settings => !settings["enable-embedding"],
+  //     },
+  //     {
+  //       key: "embedding-secret-key",
+  //       display_name: t`Embedding secret key`,
+  //       widget: SecretKeyWidget,
+  //       getHidden: settings => !settings["enable-embedding"],
+  //     },
+  //     {
+  //       key: "-embedded-dashboards",
+  //       display_name: t`Embedded Dashboards`,
+  //       widget: EmbeddedDashboardListing,
+  //       getHidden: settings => !settings["enable-embedding"],
+  //     },
+  //     {
+  //       key: "-embedded-questions",
+  //       display_name: t`Embedded Questions`,
+  //       widget: EmbeddedQuestionListing,
+  //       getHidden: settings => !settings["enable-embedding"],
+  //     },
+  //   ],
+  // },
+  // caching: {
+  //   name: t`Caching`,
+  //   settings: [
+  //     {
+  //       key: "enable-query-caching",
+  //       display_name: t`Enable Caching`,
+  //       type: "boolean",
+  //     },
+  //     {
+  //       key: "query-caching-min-ttl",
+  //       display_name: t`Minimum Query Duration`,
+  //       type: "number",
+  //       getHidden: settings => !settings["enable-query-caching"],
+  //       allowValueCollection: true,
+  //     },
+  //     {
+  //       key: "query-caching-ttl-ratio",
+  //       display_name: t`Cache Time-To-Live (TTL) multiplier`,
+  //       type: "number",
+  //       getHidden: settings => !settings["enable-query-caching"],
+  //       allowValueCollection: true,
+  //     },
+  //     {
+  //       key: "query-caching-max-kb",
+  //       display_name: t`Max Cache Entry Size`,
+  //       type: "number",
+  //       getHidden: settings => !settings["enable-query-caching"],
+  //       allowValueCollection: true,
+  //     },
+  //   ],
+  // },
+};
 
 export const getSettings = createSelector(
   state => state.admin.settings.settings,
