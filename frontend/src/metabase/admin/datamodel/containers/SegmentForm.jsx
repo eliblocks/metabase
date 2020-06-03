@@ -81,7 +81,7 @@ export default class SegmentForm extends Component {
           onClick={handleSubmit}
         >{t`Save changes`}</button>
         <Link
-          to={"/datamodel/database/" + table.db_id + "/table/" + table.id}
+          to={"/admin/datamodel/database/" + table.db_id + "/table/" + table.id}
           className="Button ml2"
         >{t`Cancel`}</Link>
       </div>

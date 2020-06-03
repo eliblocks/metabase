@@ -33,10 +33,10 @@ const mapStateToProps = (state, { params }) => {
 const mapDispatchToProps = {
   selectDatabase: ({ id }, shouldReplace) =>
     shouldReplace
-      ? replace(`/datamodel/database/${id}`)
-      : push(`/datamodel/database/${id}`),
+      ? replace(`/admin/datamodel/database/${id}`)
+      : push(`/admin/datamodel/database/${id}`),
   selectTable: ({ id, db_id }) =>
-    push(`/datamodel/database/${db_id}/table/${id}`),
+    push(`/admin/datamodel/database/${db_id}/table/${id}`),
   updateField: field => Fields.actions.update(field),
   onRetireMetric: ({ id, ...rest }) =>
     Metrics.actions.setArchived({ id }, true, rest),

@@ -220,10 +220,10 @@ export default class FieldApp extends React.Component {
               <div className="mb4 pt2 ml-auto mr-auto">
                 <Breadcrumbs
                   crumbs={[
-                    [db.name, `/datamodel/database/${db.id}`],
+                    [db.name, `/admin/datamodel/database/${db.id}`],
                     [
                       table.display_name,
-                      `/datamodel/database/${db.id}/table/${table.id}`,
+                      `/admin/datamodel/database/${db.id}/table/${table.id}`,
                     ],
                     t`${field.display_name} – Field Settings`,
                   ]}
@@ -379,7 +379,7 @@ export const BackButton = ({
   tableId: TableId,
 }) => (
   <Link
-    to={`/datamodel/database/${databaseId}/table/${tableId}`}
+    to={`/admin/datamodel/database/${databaseId}/table/${tableId}`}
     className="circle text-white p2 flex align-center justify-center bg-dark bg-brand-hover"
   >
     <Icon name="arrow_left" />

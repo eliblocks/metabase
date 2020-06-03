@@ -58,12 +58,6 @@ export default class ProfileLink extends Component {
           link: '/databases',
           event: `Navbar;Profile Dropdown;`
         },
-        {
-          title: t`Data model`,
-          icon: null,
-          link: "/datamodel",
-          event: `Navbar;Profile Dropdown;Data Model`
-        },
       ]),
       {
         title: t`Activity`,
