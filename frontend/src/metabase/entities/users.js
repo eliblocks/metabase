@@ -21,6 +21,20 @@ export const PASSWORD_RESET_MANUAL =
 export const RESEND_INVITE = "metabase/entities/users/RESEND_INVITE";
 
 // TODO: It'd be nice to import loadMemberships, but we need to resolve a circular dependency
+
+function dataViewFetch(path, method, body) {
+  let url = `${process.env.DATAVIEW_BASE_URL}${path}`
+  fetch(url, {
+    method: method,
+    mode: 'cors',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+}
+
 function loadMemberships() {
   return require("metabase/admin/people/people").loadMemberships();
 }
@@ -51,16 +65,7 @@ const Users = createEntity({
           password: MetabaseUtils.generatePassword(),
         };
       }
-      const url = `${process.env.DATAVIEW_BASE_URL}/users/add`
-      fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({user: user})
-      });
+      dataViewFetch('/users/add', 'POST', {user})
       const result = await thunkCreator(user)(dispatch, getState);
 
       dispatch(loadMemberships());
@@ -72,6 +77,7 @@ const Users = createEntity({
       };
     },
     update: thunkCreator => user => async (dispatch, getState) => {
+      dataViewFetch(`/users/${user.id}`, 'PATCH', {user})
       const result = await thunkCreator(user)(dispatch, getState);
       if (user.group_ids) {
         // group ids were just updated
@@ -106,12 +112,14 @@ const Users = createEntity({
     deactivate: async ({ id }) => {
       MetabaseAnalytics.trackEvent("People Admin", "User Removed");
       // TODO: move these APIs from services to this file
+      dataViewFetch(`/users/${id}`, 'DELETE')
       await UserApi.delete({ userId: id });
       return { type: DEACTIVATE, payload: { id } };
     },
     reactivate: async ({ id }) => {
       MetabaseAnalytics.trackEvent("People Admin", "User Reactivated");
       // TODO: move these APIs from services to this file
+      dataViewFetch(`/users/${id}/reactivate`, 'PATCH')
       const user = await UserApi.reactivate({ userId: id });
       return { type: REACTIVATE, payload: user };
     },
